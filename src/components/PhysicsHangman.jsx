@@ -8,15 +8,15 @@ const physicsTerms = [
     { term: "CUANTICA", info: "La mecánica cuántica es una parte fundamental de la física que explica el comportamiento de la materia y la energía a escalas muy pequeñas." }
 ];
 
-// Rutas a las imágenes del ahorcado
+
 const hangmanImages = [
-    'https://karenkm521.github.io/JuegoDelAhorcado/imagenes/muneco0.png', 
-    'https://karenkm521.github.io/JuegoDelAhorcado/imagenes/muneco1.png', 
-    'https://karenkm521.github.io/JuegoDelAhorcado/imagenes/muneco2.png', 
-    'https://karenkm521.github.io/JuegoDelAhorcado/imagenes/muneco3.png', 
-    'https://karenkm521.github.io/JuegoDelAhorcado/imagenes/muneco4.png', 
-    'https://karenkm521.github.io/JuegoDelAhorcado/imagenes/muneco5.png', 
-    'https://karenkm521.github.io/JuegoDelAhorcado/imagenes/muneco6.png' // 7 error (juego terminado)
+    'src/assets/img/plataforma.png',
+    'src/assets/img/Group 1.png',
+    'src/assets/img/Group 2.png',
+    'src/assets/img/Group3.png',
+    'src/assets/img/Group4.png',
+    'src/assets/img/Group5.png',
+    'src/assets/img/Group6.png'
 ];
 
 const PhysicsHangman = () => {
@@ -27,7 +27,7 @@ const PhysicsHangman = () => {
     const [hasWon, setHasWon] = useState(false);
 
     useEffect(() => {
-        resetGame();  
+        resetGame();
     }, []);
 
     const resetGame = () => {
@@ -51,7 +51,7 @@ const PhysicsHangman = () => {
 
     const checkWin = (term) => {
         const isWin = term.split('').every(letter => guessedLetters.includes(letter));
-        if (isWin || errors >= 6) {  
+        if (isWin || errors >= 6) {
             setHasWon(isWin);
             setGameOver(true);
         }
@@ -60,19 +60,24 @@ const PhysicsHangman = () => {
     const displayWord = currentTerm.term ? currentTerm.term.split('').map(letter => guessedLetters.includes(letter) ? letter : "_").join(" ") : "";
 
     return (
-        <div className="physics-hangman">
-            <img src={hangmanImages[Math.min(errors, hangmanImages.length - 1)]} alt="Hangman" />
-            <p>Intenta adivinar la palabra: {displayWord}</p>
-            {!gameOver && <VirtualKeyboard onGuess={guessLetter} guessedLetters={guessedLetters} />}
-            {gameOver && (
-                <div>
-                    <p>{hasWon ? "¡Felicidades!" : "Mejor suerte la próxima vez."}</p>
-                    <p>Curiosidad sobre el término: {currentTerm.info}</p>
-                    <button onClick={resetGame}>Jugar de nuevo</button>
-                </div>
-            )}
-            <p>Errores: {errors}</p>
+        <div className="flex justify-center items-center h-screen">
+            <div className="physics-hangman bg-white bg-opacity-80 p-8 rounded-lg shadow-md">
+                <img src={hangmanImages[Math.min(errors, hangmanImages.length - 1)]} alt="Hangman" className="mb-4" />
+                <p className="text-xl">Intenta adivinar la palabra: {displayWord}</p>
+                {!gameOver && <VirtualKeyboard onGuess={guessLetter} guessedLetters={guessedLetters} />}
+                {gameOver && (
+                    <div className="mt-4">
+                        <p className="text-xl">{hasWon ? "¡Felicidades!" : "Mejor suerte la próxima vez."}</p>
+                        <p className="text-lg mt-2">Curiosidad sobre el término: {currentTerm.info}</p>
+                        <button onClick={resetGame} className="bg-blue-500 hover:bg-blue-700 text-white font-bold py-2 px-4 mt-4 rounded">Jugar de nuevo</button>
+                    </div>
+                )}
+                <p className="text-lg mt-4">Errores: {errors}</p>
+            </div>
         </div>
+
+
+
     );
 };
 
