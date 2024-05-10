@@ -1,22 +1,22 @@
 import React, { useState, useEffect } from 'react';
 import VirtualKeyboard from './VirtualKeyboard'; 
+import physicsTerms from './PhysicsTerms.json';
 
-const physicsTerms = [
-    { term: "RELATIVIDAD", info: "Albert Einstein desarrolló la teoría de la relatividad, que transformó nuestra comprensión del espacio, el tiempo y la gravedad.", hint: "Teoría de Einstein sobre el tiempo y espacio" },
-    { term: "NEWTON", info: "Isaac Newton formuló las leyes de la mecánica y también hizo descubrimientos pioneros en óptica y cálculo.", hint: "Leyes de la mecánica" },
-    { term: "CUANTICA", info: "La mecánica cuántica es una parte fundamental de la física que explica el comportamiento de la materia y la energía a escalas muy pequeñas.", hint: "Teoría sobre partículas muy pequeñas" },
-    { term: "PASTEURIZACION", info: "Este proceso, nombrado en honor a Louis Pasteur, revolucionó la seguridad alimentaria en el siglo XIX al extender la vida útil de los alimentos y eliminar patógenos.", hint: "Proceso científico nombrado en honor a un microbiólogo francés, clave en la prevención de enfermedades transmitidas por alimentos." },
-    { term: "TERMODINAMICA", info: "La termodinámica es el estudio de la transferencia de energía en forma de calor y trabajo en procesos químicos y físicos.", hint: "Estudio de la transferencia de energía" },
-    { term: "ELECTROMAGNETISMO", info: "Estudio de las fuerzas eléctricas y magnéticas, que llevó al desarrollo de tecnologías como el motor eléctrico y la radio.", hint: "Teoría sobre fuerzas eléctricas y magnéticas" },
-    { term: "MECANICA CLASICA", info: "Rama de la física que se ocupa del movimiento de cuerpos bajo la influencia de sistemas de fuerzas.", hint: "Estudio del movimiento de cuerpos bajo fuerzas" },
-    { term: "ENTROPIA", info: "Medida de desorden o aleatoriedad en un sistema, clave en el segundo principio de la termodinámica.", hint: "Medida de desorden en un sistema" },
-    { term: "PLASMA", info: "Uno de los cuatro estados fundamentales de la materia, consistente en un gas ionizado con carga eléctrica neta neutra.", hint: "Estado de la materia con gas ionizado" },
-    { term: "NEUTRINO", info: "Partícula elemental casi sin masa y que apenas interactúa con la materia, lo que la hace extremadamente difícil de detectar.", hint: "Partícula elemental difícil de detectar" },
-    { term: "FOTOLISIS", info: "Proceso químico por el cual la energía de la luz se utiliza para romper enlaces químicos, como en la fotosíntesis.", hint: "Proceso donde la luz rompe enlaces químicos" },
-    { term: "VACUNACION", info: "Louis Pasteur desarrolló el concepto de vacunas para prevenir enfermedades. Sus investigaciones sobre la rabia condujeron a la creación de la primera vacuna para esta enfermedad en humanos.", hint: "Desarrollo de inmunizaciones para prevenir enfermedades por Pasteur" }
 
-];
-
+// const physicsTerms = [
+//     { term: "RELATIVIDAD", info: "Albert Einstein desarrolló la teoría de la relatividad, que transformó nuestra comprensión del espacio, el tiempo y la gravedad.", hint: "Teoría de Einstein sobre el tiempo y espacio" },
+//     { term: "NEWTON", info: "Isaac Newton formuló las leyes de la mecánica y también hizo descubrimientos pioneros en óptica y cálculo.", hint: "Leyes de la mecánica" },
+//     { term: "CUANTICA", info: "La mecánica cuántica es una parte fundamental de la física que explica el comportamiento de la materia y la energía a escalas muy pequeñas.", hint: "Teoría sobre partículas muy pequeñas" },
+//     { term: "PASTEURIZACION", info: "Este proceso, nombrado en honor a Louis Pasteur, revolucionó la seguridad alimentaria en el siglo XIX al extender la vida útil de los alimentos y eliminar patógenos.", hint: "Proceso científico nombrado en honor a un microbiólogo francés, clave en la prevención de enfermedades transmitidas por alimentos." },
+//     { term: "TERMODINAMICA", info: "La termodinámica es el estudio de la transferencia de energía en forma de calor y trabajo en procesos químicos y físicos.", hint: "Estudio de la transferencia de energía" },
+//     { term: "ELECTROMAGNETISMO", info: "Estudio de las fuerzas eléctricas y magnéticas, que llevó al desarrollo de tecnologías como el motor eléctrico y la radio.", hint: "Teoría sobre fuerzas eléctricas y magnéticas" },
+//     { term: "OPTICA", info: "La óptica es la rama de la física que estudia el comportamiento y las propiedades de la luz, incluyendo su interacción con la materia y su propagación a través del espacio.", hint: "Estudio del comportamiento de la luz"},
+//     { term: "ENTROPIA", info: "Medida de desorden o aleatoriedad en un sistema, clave en el segundo principio de la termodinámica.", hint: "Medida de desorden en un sistema" },
+//     { term: "PLASMA", info: "Uno de los cuatro estados fundamentales de la materia, consistente en un gas ionizado con carga eléctrica neta neutra.", hint: "Estado de la materia con gas ionizado" },
+//     { term: "NEUTRINO", info: "Partícula elemental casi sin masa y que apenas interactúa con la materia, lo que la hace extremadamente difícil de detectar.", hint: "Partícula elemental difícil de detectar" },
+//     { term: "FOTOLISIS", info: "Proceso químico por el cual la energía de la luz se utiliza para romper enlaces químicos, como en la fotosíntesis.", hint: "Proceso donde la luz rompe enlaces químicos" },
+//     { term: "VACUNACION", info: "Louis Pasteur desarrolló el concepto de vacunas para prevenir enfermedades. Sus investigaciones sobre la rabia condujeron a la creación de la primera vacuna para esta enfermedad en humanos.", hint: "Desarrollo de inmunizaciones para prevenir enfermedades por Pasteur" }
+// ];
 
 const hangmanImages = [
     'src/assets/img/Frame0.png',
@@ -141,7 +141,6 @@ const PhysicsHangman = () => {
     };
 
     const displayWord = currentTerm.term ? currentTerm.term.split('').map(letter => guessedLetters.includes(letter) ? letter : "_").join(" ") : "";
-
     return (
         <div className="flex justify-center items-start h-screen">
             <div className="relative w-full max-w-screen-lg mx-auto flex flex-col items-center pt-12">
