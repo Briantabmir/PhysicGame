@@ -14,8 +14,8 @@ const VirtualKeyboard = ({ onGuess, guessedLetters }) => {
                 style={{
                     backgroundImage: `url(src/assets/keys/${letter}.png)`,
                     backgroundSize: 'cover',
-                    width: '40px',  // Ajusta al tamaño real de tus imágenes
-                    height: '40px', // Ajusta al tamaño real de tus imágenes
+                    width: '50px',  // Ajusta al tamaño real de tus imágenes
+                    height: '50px', // Ajusta al tamaño real de tus imágenes
                     color: 'transparent',
                     border: 'none',
                 }}
